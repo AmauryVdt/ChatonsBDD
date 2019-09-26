@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoriesController!{% endblock %}
+
+{% block body %}
+<h1>Listes des catégories</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Titres</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for categorie in categories %}
+        <tr>
+            <td>{{ categorie.titre }}</td>
+            <td>{{ categorie.description }}</td>
+            <td>
+                <a href="{{ path("modifier_categories",{"id":categorie.id}) }}"
+                    class="btn btn-outline-primary">
+                    Modifier
+                </a>
+                <a href="{{ path("supprimer_categories",{"id":categorie.id}) }}"
+                   class="btn btn-outline-danger">
+                    Supprimer
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
