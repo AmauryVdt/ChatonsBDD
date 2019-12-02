@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Categorie;
 use App\Form\CategorieType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -98,7 +99,10 @@ class CategoriesController extends AbstractController
         $categorie = $repository->find($id);
 
         //creation du formulaire
-        $formulaire = $this->createForm(CategorieType::class, $categorie);
+        $formulaire = $this->createFormBuilder()
+            ->add("submit",SubmitType::class, ["label" => "OK", "attr"=>["class"=>"btn btn-succes"]])
+            ->getForm();
+        //$formulaire = $this->createForm(CategorieType::class, $categorie);
 
         $formulaire->handleRequest($request);
 
